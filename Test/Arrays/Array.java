@@ -1,6 +1,7 @@
 package Test.Arrays;
 
 public class Array {
+
     private int[] array;
     private int count;
    public Array(int length){
