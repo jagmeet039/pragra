@@ -5,35 +5,39 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) {
-        Map<String,String> user = new HashMap<>();
-        Authentication auth = new Authentication();
-        Scanner sc = new Scanner(System.in);
+        int choice;
+        Map<String, String> userMap = new HashMap<>();
+        Credentials user = new Credentials();
+        Scanner scanner = new Scanner(System.in);
+        do {
+            System.out.println("1. Add User");
+            System.out.println("2. Update Password");
+            System.out.println("3. Print Users");
+            System.out.println("4. Validate User");
+            System.out.println("5. Exit");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
 
-        //enter 5 records and at 6th add Sam with sam123
-        user.put("Jagmeet","jagmeet123");
-        user.put("Sahil","sahil123");
-        user.put("Iqbal","iqbal123");
-        user.put("Joshi","joshi123");
-        user.put("Rohit","rohit123");
-        user.put("Sam","sam123");
-
-        //enhanced loop - Print username and passowrd
-        for(Map.Entry<String, String> entry: user.entrySet()){
-            System.out.println("Username: " + entry.getKey() + " and Password: " + entry.getValue());
-        }
-
-        System.out.println();
-
-        //update password for Sam
-        user.put("Sam","sam789");
-
-        //get password for Sam
-        System.out.println("Updated Password for Sam is: " + user.get("Sam"));
-
-        //validation
-        System.out.println(auth.authenticate(sc, user));
-
+            switch (choice) {
+                case 1:
+                    user.addUser(scanner, userMap);
+                    break;
+                case 2:
+                    user.updatePassword(scanner, userMap);
+                    break;
+                case 3:
+                    user.printUsers(userMap);
+                    break;
+                case 4:
+                    user.validateUser(scanner, userMap);
+                    break;
+                case 5:
+                    System.out.println("Thank you for Using!");
+                    break;
+                default:
+                    System.out.println("Invalid choice!");
+            }
+        } while (choice != 5);
     }
 }
